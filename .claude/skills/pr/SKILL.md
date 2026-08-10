@@ -1,5 +1,17 @@
-You are creating or updating a GitHub pull request. `$ARGUMENTS` is the text the user passed after
-the command name (e.g. `/pr "feat: add thing"` → `$ARGUMENTS` = `feat: add thing`).
+---
+name: pr
+description:
+  Create or update a GitHub pull request for the current branch. Takes an optional title.
+---
+
+You are creating or updating a GitHub pull request.
+
+## Target
+
+$ARGUMENTS
+
+If a title was passed, use it per Step 2 below. If empty, proceed and resolve the title from
+existing PR state or stop as described in Step 2.
 
 ## Step 1 — Gather context (run all in parallel)
 
@@ -21,7 +33,7 @@ error to the user.
 
 **Title** (in priority order):
 
-1. `$ARGUMENTS` if non-empty — use this in both modes
+1. The target above, if non-empty — use this in both modes
 2. Existing PR title from `gh pr view` — update mode only
 3. No title available in create mode → stop now and tell the user: `/pr "your title here"`
 
